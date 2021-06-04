@@ -109,7 +109,7 @@ function onComputePressureUpdate(update) {
       JSON.stringify(update.options.cpuSpeedThresholds);
   row.appendChild(speedThresholdsCell);
 
-  reportsTableBody.appendChild(row);
+  reportsTableBody.prepend(row);
 }
 
 // Adds an <input> specifying a threhold in a <span> list of thresholds.
