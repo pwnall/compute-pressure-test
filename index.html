@@ -1,218 +1,251 @@
-<!doctype html>
-<meta charset="utf-8">
-<!-- https://pwnall.github.io | production keys -->
-<meta http-equiv="origin-trial" content="AruGB0GsyHBcb9GzeqO9tCSSQ1hxwMLsDHPG7dRiz8tuoA8Q2tGzFUnm+ChtONUFfsdWaLWXnE6p7+vJor+PXQgAAABZeyJvcmlnaW4iOiJodHRwczovL3B3bmFsbC5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IkNvbXB1dGVQcmVzc3VyZSIsImV4cGlyeSI6MTYzNDA4MzE5OX0=" />
-<!-- https://localhost:8080 | production keys -->
-<meta http-equiv="origin-trial" content="Au9z2b3H/pygA8Ex2RPRG5plW2mJkaEAvgQw6aA92XdkU1VIZJfYFd3Qb/GyVzH9UvNvdFpnFcpxtSRZ6AoUDAMAAABSeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJmZWF0dXJlIjoiQ29tcHV0ZVByZXNzdXJlIiwiZXhwaXJ5IjoxNjM0MDgzMTk5fQ==" />
-<!-- https://pwnall.github.io | test keys -->
-<meta http-equiv="origin-trial" content="A7cnHoS8nwaPzPRC3rGlygfH9z+efImxfT7Xa89TN85K0CskiYpfV1zJgIp4b6yX7Cqf19KdgEAY+dWVP9dITwYAAABeeyJvcmlnaW4iOiAiaHR0cHM6Ly9wd25hbGwuZ2l0aHViLmlvOjQ0MyIsICJmZWF0dXJlIjogIkNvbXB1dGVQcmVzc3VyZSIsICJleHBpcnkiOiAyMDAwMDAwMDAwfQ==" />
-<!-- http://127.0.0.1:8080 | test keys -->
-<meta http-equiv="origin-trial" content="A3BwpzDOAWd07Jziz4PXj5O+PVkNAEPcRywBSQw1MjDSJe9s4ASWWWI5jaLHkfAwXiPdV23yPlRwTY/GJTCtJAsAAABXeyJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo4MDgwIiwgImZlYXR1cmUiOiAiQ29tcHV0ZVByZXNzdXJlIiwgImV4cGlyeSI6IDIwMDAwMDAwMDB9" />
-<title>Compute Pressure API sample</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- https://pwnall.github.io | production keys -->
+    <meta
+      http-equiv="origin-trial"
+      content="AruGB0GsyHBcb9GzeqO9tCSSQ1hxwMLsDHPG7dRiz8tuoA8Q2tGzFUnm+ChtONUFfsdWaLWXnE6p7+vJor+PXQgAAABZeyJvcmlnaW4iOiJodHRwczovL3B3bmFsbC5naXRodWIuaW86NDQzIiwiZmVhdHVyZSI6IkNvbXB1dGVQcmVzc3VyZSIsImV4cGlyeSI6MTYzNDA4MzE5OX0="
+    />
+    <!-- https://localhost:8080 | production keys -->
+    <meta
+      http-equiv="origin-trial"
+      content="Au9z2b3H/pygA8Ex2RPRG5plW2mJkaEAvgQw6aA92XdkU1VIZJfYFd3Qb/GyVzH9UvNvdFpnFcpxtSRZ6AoUDAMAAABSeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJmZWF0dXJlIjoiQ29tcHV0ZVByZXNzdXJlIiwiZXhwaXJ5IjoxNjM0MDgzMTk5fQ=="
+    />
+    <!-- https://pwnall.github.io | test keys -->
+    <meta
+      http-equiv="origin-trial"
+      content="A7cnHoS8nwaPzPRC3rGlygfH9z+efImxfT7Xa89TN85K0CskiYpfV1zJgIp4b6yX7Cqf19KdgEAY+dWVP9dITwYAAABeeyJvcmlnaW4iOiAiaHR0cHM6Ly9wd25hbGwuZ2l0aHViLmlvOjQ0MyIsICJmZWF0dXJlIjogIkNvbXB1dGVQcmVzc3VyZSIsICJleHBpcnkiOiAyMDAwMDAwMDAwfQ=="
+    />
+    <!-- http://127.0.0.1:8080 | test keys -->
+    <meta
+      http-equiv="origin-trial"
+      content="A3BwpzDOAWd07Jziz4PXj5O+PVkNAEPcRywBSQw1MjDSJe9s4ASWWWI5jaLHkfAwXiPdV23yPlRwTY/GJTCtJAsAAABXeyJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo4MDgwIiwgImZlYXR1cmUiOiAiQ29tcHV0ZVByZXNzdXJlIiwgImV4cGlyeSI6IDIwMDAwMDAwMDB9"
+    />
+    <title>Compute Pressure API sample</title>
+    <style>
+      :root {
+        color-scheme: dark light;
+      }
+      
+      body {
+        font-family: system-ui, sans-serif;
+      }
+      
+      #api-availability.available {
+        color: green;
+      }
+      
+      #api-availability.unavailable {
+        color: red;
+      }
 
-<style>
-#api-availability.available {
-  color: green;
-}
-#api-availability.unavailable {
-  color:red;
-}
+      span.threshold-box {
+        padding-right: 0.5em;
+      }
+      
+      button.remove-threshold {
+        margin-left: 0.2em;
+      }
+    </style>
+  </head>
+  <body id="home">
+    <h1>Compute Pressure API sample</h1>
 
-span.threshold-box {
-  padding-right: 0.5em;
-}
-button.remove-threshold {
-  margin-left: 0.2em;
-}
+    <p id="api-availability" class="loading">Loading...</p>
 
-</style>
+    <h2>Thresholds</h2>
+    <form id="thresholds">
+      <p>
+        CPU utilization:
 
-<h1>Compute Pressure API sample</h1>
+        <span id="cpu-utilization-thresholds">
+          <button type="button" title="Add threshold" class="add-threshold">
+            Add threshold
+          </button>
+        </span>
+      </p>
 
-<p id="api-availability" class="loading">Loading...</p>
+      <p>
+        CPU speed:
 
-<h2>Thresholds</h2>
-<form id="thresholds">
-  <p>
-    CPU utilization:
+        <span id="cpu-speed-thresholds">
+          <button type="button" title="Add threshold" class="add-threshold">
+            Add threshold
+          </button>
+        </span>
+      </p>
+    </form>
 
-    <span id="cpu-utilization-thresholds">
-      <button type="button" title="Add threshold" class="add-threshold">
-        +
-      </button>
-    </span>
-  </p>
+    <h2>Reports</h2>
 
-  <p>
-    CPU speed:
+    <p>
+      <button id="start-button">Start observing</button>
+      <button id="stop-button">Stop observing</button>
+      <button id="clear-button">Clear reports</button>
+    </p>
 
-    <span id="cpu-speed-thresholds">
-      <button type="button" title="Add threshold" class="add-threshold">
-        +
-      </button>
-    </span>
-  </p>
-</form>
+    <table id="reports">
+      <thead>
+        <tr>
+          <th scope="col">Timestamp</th>
+          <th scope="col">CPU utilization</th>
+          <th scope="col">CPU speed</th>
+          <th scope="col">CPU utilization thresholds</th>
+          <th scope="col">CPU speed thresholds</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-<h2>Reports</h2>
+    <script>
+      "use strict";
 
-<p>
-  <button id="start-button">Start observing</button>
-  <button id="stop-button">Stop observing</button>
-  <button id="clear-button">Clear reports</button>
-</p>
+      const reportsTable = document.getElementById("reports");
+      const reportsTableBody = reportsTable.querySelector("tbody");
 
-<table id="reports">
-  <thead>
-    <tr>
-      <th scope="col">Timestamp</td>
-      <th scope="col">CPU utilization</td>
-      <th scope="col">CPU speed</td>
-      <th scope="col">CPU utilization thresholds</td>
-      <th scope="col">CPU speed thresholds</td>
-    </tr>
-  </th>
-  <tbody>
-  </tbody>
-</table>
+      // Callback passed to ComputePressureObserver.
+      function onComputePressureUpdate(update) {
+        const row = document.createElement("tr");
 
-<script>
-'use strict';
+        const timestampCell = document.createElement("td");
+        const timestamp = performance.now() / 1000;
+        timestampCell.textContent = timestamp.toPrecision(3);
+        row.appendChild(timestampCell);
 
-const reportsTable = document.getElementById('reports');
-const reportsTableBody = reportsTable.querySelector('tbody');
+        const utilizationCell = document.createElement("td");
+        utilizationCell.textContent = update.cpuUtilization;
+        row.appendChild(utilizationCell);
 
-// Callback passed to ComputePressureObserver.
-function onComputePressureUpdate(update) {
-  const row = document.createElement('tr');
+        const speedCell = document.createElement("td");
+        speedCell.textContent = update.cpuSpeed;
+        row.appendChild(speedCell);
 
-  const timestampCell = document.createElement('td');
-  const timestamp = performance.now() / 1000;
-  timestampCell.textContent = timestamp.toPrecision(3);
-  row.appendChild(timestampCell);
+        const utilizationThresholdsCell = document.createElement("td");
+        utilizationThresholdsCell.textContent = JSON.stringify(
+          update.options.cpuUtilizationThresholds
+        );
+        row.appendChild(utilizationThresholdsCell);
 
-  const utilizationCell = document.createElement('td');
-  utilizationCell.textContent = update.cpuUtilization;
-  row.appendChild(utilizationCell);
+        const speedThresholdsCell = document.createElement("td");
+        speedThresholdsCell.textContent = JSON.stringify(
+          update.options.cpuSpeedThresholds
+        );
+        row.appendChild(speedThresholdsCell);
 
-  const speedCell = document.createElement('td');
-  speedCell.textContent = update.cpuSpeed;
-  row.appendChild(speedCell);
+        reportsTableBody.prepend(row);
+      }
 
-  const utilizationThresholdsCell = document.createElement('td');
-  utilizationThresholdsCell.textContent =
-      JSON.stringify(update.options.cpuUtilizationThresholds);
-  row.appendChild(utilizationThresholdsCell);
+      // Adds an <input> specifying a threhold in a <span> list of thresholds.
+      function addThreshold(root, thresholdValue) {
+        const span = document.createElement("span");
+        span.classList.add("threshold-box");
 
-  const speedThresholdsCell = document.createElement('td');
-  speedThresholdsCell.textContent =
-      JSON.stringify(update.options.cpuSpeedThresholds);
-  row.appendChild(speedThresholdsCell);
+        const input = document.createElement("input");
+        input.setAttribute("type", "number");
+        input.setAttribute("min", 0.0);
+        input.setAttribute("max", 1.0);
+        input.setAttribute("step", 0.01);
+        input.value = thresholdValue;
+        span.appendChild(input);
 
-  reportsTableBody.prepend(row);
-}
+        const removeButton = document.createElement("button");
+        removeButton.setAttribute("title", "Remove threshold");
+        removeButton.classList.add("remove-threshold");
+        removeButton.textContent = "Remove threshold";
+        removeButton.addEventListener("click", () => {
+          span.remove();
+        });
+        span.appendChild(removeButton);
 
-// Adds an <input> specifying a threhold in a <span> list of thresholds.
-function addThreshold(root, thresholdValue) {
-  const span = document.createElement('span');
-  span.classList.add('threshold-box');
+        const addButton = root.querySelector("button.add-threshold");
+        root.insertBefore(span, addButton);
+      }
 
-  const input = document.createElement('input');
-  input.setAttribute('type', 'number');
-  input.setAttribute('min', 0.0);
-  input.setAttribute('max', 1.0);
-  input.setAttribute('step', 0.01);
-  input.value = thresholdValue;
-  span.appendChild(input);
+      // Returns an array of thresholds from <input>s in a <span>.
+      function readThresholds(root) {
+        const values = [];
+        for (const input of root.querySelectorAll("input")) {
+          values.push(input.value);
+        }
+        return values;
+      }
 
-  const removeButton = document.createElement('button');
-  removeButton.setAttribute('title', 'Remove threshold');
-  removeButton.classList.add('remove-threshold');
-  removeButton.textContent = 'X';
-  removeButton.addEventListener('click', () => {
-    span.remove();
-  });
-  span.appendChild(removeButton);
+      // Wires up a <span> list of thresholds.
+      function setupThresholdsUi(root) {
+        const addButton = root.querySelector("button.add-threshold");
+        addButton.addEventListener("click", () => {
+          const oldThresholds = readThresholds(root);
+          const nextThreshold =
+            oldThresholds.length === 0
+              ? 0.5
+              : oldThresholds[oldThresholds.length - 1];
+          addThreshold(root, nextThreshold);
+        });
+      }
 
-  const addButton = root.querySelector('button.add-threshold');
-  root.insertBefore(span, addButton);
-}
+      const cpuUtilizationThresholdsRoot = document.getElementById(
+        "cpu-utilization-thresholds"
+      );
+      setupThresholdsUi(cpuUtilizationThresholdsRoot);
+      addThreshold(cpuUtilizationThresholdsRoot, 0.2);
+      addThreshold(cpuUtilizationThresholdsRoot, 0.5);
+      addThreshold(cpuUtilizationThresholdsRoot, 0.8);
 
-// Returns an array of thresholds from <input>s in a <span>.
-function readThresholds(root) {
-  const values = [];
-  for (const input of root.querySelectorAll('input')) {
-    values.push(input.value);
-  }
-  return values;
-}
+      const cpuSpeedThresholdsRoot = document.getElementById(
+        "cpu-speed-thresholds"
+      );
+      setupThresholdsUi(cpuSpeedThresholdsRoot);
+      addThreshold(cpuSpeedThresholdsRoot, 0.5);
 
-// Wires up a <span> list of thresholds.
-function setupThresholdsUi(root) {
-  const addButton = root.querySelector('button.add-threshold');
-  addButton.addEventListener('click', () => {
-    const oldThresholds = readThresholds(root);
-    const nextThreshold = (oldThresholds.length === 0) ?
-        0.5 : oldThresholds[oldThresholds.length - 1];
-    addThreshold(root, nextThreshold);
-  });
-}
+      // Returns the options used to instantiate a ComputePressureObserver.
+      function observerOptions() {
+        return {
+          cpuUtilizationThresholds: readThresholds(
+            cpuUtilizationThresholdsRoot
+          ),
+          cpuSpeedThresholds: readThresholds(cpuSpeedThresholdsRoot),
+        };
+      }
 
-const cpuUtilizationThresholdsRoot =
-    document.getElementById('cpu-utilization-thresholds');
-setupThresholdsUi(cpuUtilizationThresholdsRoot);
-addThreshold(cpuUtilizationThresholdsRoot, 0.2);
-addThreshold(cpuUtilizationThresholdsRoot, 0.5);
-addThreshold(cpuUtilizationThresholdsRoot, 0.8);
+      // Used by "Start observing" and "Stop observing" buttons.
+      let observer = null;
 
-const cpuSpeedThresholdsRoot =
-    document.getElementById('cpu-speed-thresholds');
-setupThresholdsUi(cpuSpeedThresholdsRoot);
-addThreshold(cpuSpeedThresholdsRoot, 0.5);
+      const startButton = document.getElementById("start-button");
+      startButton.addEventListener("click", () => {
+        observer = new ComputePressureObserver(
+          onComputePressureUpdate,
+          observerOptions()
+        );
+        observer.observe();
+      });
 
-// Returns the options used to instantiate a ComputePressureObserver.
-function observerOptions() {
-  return {
-    cpuUtilizationThresholds: readThresholds(cpuUtilizationThresholdsRoot),
-    cpuSpeedThresholds: readThresholds(cpuSpeedThresholdsRoot),
-  };
-}
+      const stopButton = document.getElementById("stop-button");
+      stopButton.addEventListener("click", () => {
+        if (observer !== null) observer.stop();
 
-// Used by "Start observing" and "Stop observing" buttons.
-let observer = null;
+        // Intentionally not setting `observer` to null so we can manually test that
+        // stop() is idempotent.
+      });
 
-const startButton = document.getElementById('start-button');
-startButton.addEventListener('click', () => {
-  observer = new ComputePressureObserver(onComputePressureUpdate,
-                                         observerOptions());
-  observer.observe();
-});
+      const clearButton = document.getElementById("clear-button");
+      clearButton.addEventListener("click", () => {
+        reportsTableBody.innerHTML = "";
+      });
 
-const stopButton = document.getElementById('stop-button');
-stopButton.addEventListener('click', () => {
-  if (observer !== null)
-    observer.stop();
+      const availabilityDiv = document.getElementById("api-availability");
+      availabilityDiv.classList.remove("loading");
+      if ("ComputePressureObserver" in self) {
+        availabilityDiv.textContent = "Compute Pressure API available.";
+        availabilityDiv.classList.add("available");
+      } else {
+        availabilityDiv.textContent = "Compute Pressure API not available.";
+        availabilityDiv.classList.add("unavailable");
 
-  // Intentionally not setting `observer` to null so we can manually test that
-  // stop() is idempotent.
-});
-
-const clearButton = document.getElementById('clear-button');
-clearButton.addEventListener('click', () => {
-  reportsTableBody.innerHTML = '';
-});
-
-const availabilityDiv = document.getElementById('api-availability');
-availabilityDiv.classList.remove('loading');
-if ('ComputePressureObserver' in self) {
-  availabilityDiv.textContent = 'Compute Pressure API available.';
-  availabilityDiv.classList.add('available');
-} else{
-  availabilityDiv.textContent = 'Compute Pressure API not available.';
-  availabilityDiv.classList.add('unavailable');
-
-  // TODO(pwnall): Disable form elements.
-  startButton.disabled = true;
-  stopButton.disabled = true;
-}
-</script>
+        // TODO(pwnall): Disable form elements.
+        startButton.disabled = true;
+        stopButton.disabled = true;
+      }
+    </script>
+  </body>
+</html>
